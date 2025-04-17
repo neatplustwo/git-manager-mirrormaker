@@ -1,0 +1,26 @@
+bulk git manager 
+user friendly tool
+homepage - list all repositories from all organizations it can access via token from all or one platform. icon if github.com or gitlab.com, otherwise generic icon. ability to filter by visibility (public/private/internal). homepage will have functionality to bulk delete or transfer (if same platform) and migrate (if transfer to is chosen into a different platform)
+import page - import by url list one per line, and select (dropdown, with platform icons, can hover to see url of profile) which account to put it in. If destination is gitea, checking mirror checkbox will allow to make source repository to be imported and always mirrored.
+bulk rebuild - recreate all organizations visible in one platform onto another (e.g. github to gitlab, gitea...)
+bulk mirror - likely could use gickup, allow configuration of which repositories are backed up to where. while yes gitea has such functionality too, the problem is that once token expires a lot of repositories would need to be reconfigured, so seems like having it outside of gitea would be better. also does gickup use temp folder when it transfer to remote git server?
+
+pages - each page - functionality to be in its own zero config route. zero config route is like php router here:
+
+Connect via oauth or personal token: GitHub Gitlab (gitlab.com and selfhosted Gitlab), Gitea (there can be multiple Gitea/Forgejo due to selfhosting and public hosted instances)
+Bulk migrate repo from user/organization 
+Bulk rebuild (create) organization groups, see list organizations on chosen platform (GitHub, etc) and into which platform to do it
+Bulk delete (select all or manually select the ones needed. Forced delay of 5 minutes to be able to cancel the request)
+Bulk transfer repositories (within same platform between user or organization)
+Bulk mirror repositories (Gitea only) - mirrors remote repositories to selfhosted gitea
+Bulk repush (repost commits) from Gitea to any other git hosting, see repos who have it enabled, if they're are succeeding. Mirrors selfhosted repository to other git hosting providers
+Bulk make private/public (forced delay 5 minutes like before, but only for making repos public, private can happen instantly, though store action history like logs for this and other tasks being done, for this it could offer instant undo since it would do tasks in bulk)
+Bulk delete organizations if zero repos, see list of organizations and how many repo they have (Public, forks, mirrors, private, internal)
+bulk add users to multiple organizations with chosen permission
+
+maybe use python to have both web and cli and cron
+Use gickup for automated repush to other code hosting platforms? (python would allow easier creation and management what to backup)
+Gickup test? (Mirror Forgejo / diy script mirrormaker - bulk create orgs and repo mirrors)
+
+If possible for some functionality: html JavaScript only tool, I think this might not even need server side backend. Config / credentials can be stored in browser (local storage?), exported and imported.
+Likely could be single page app but be capable of multiple page routes to provide a better suited view?
